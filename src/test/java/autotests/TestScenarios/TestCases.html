@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Times; color: #ffffff; -webkit-text-stroke: #ffffff; background-color: #101b1a}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Times; color: #ffffff; -webkit-text-stroke: #ffffff; background-color: #101b1a; min-height: 18.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Times; color: #ffffff; background-color: #101b1a}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Times; color: #ffffff; background-color: #101b1a; min-height: 18.0px}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Helvetica; color: #101b1a; -webkit-text-stroke: #101b1a; background-color: #ffffff}
+    span.s1 {font-kerning: none}
+    span.s2 {font: 14.0px Times; font-kerning: none; color: #ffffff; background-color: #101b1a; -webkit-text-stroke: 0px #000000}
+    span.s3 {font-kerning: none; -webkit-text-stroke: 0px #000000}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">performance_glitch_user</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">Precondition</span></p>
+<p class="p1"><span class="s1">1. Login to https://www.saucedemo.com</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">Case 1.</span></p>
+<p class="p1"><span class="s1">1. Click on product title</span></p>
+<p class="p1"><span class="s1">2. Click on Add to cart button</span></p>
+<p class="p1"><span class="s1">3. Click on Back to products</span></p>
+<p class="p1"><span class="s1">4. Verify that product have only Remove button instead of Add to cart button</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">Case 2.</span></p>
+<p class="p1"><span class="s1">1. Click on product title</span></p>
+<p class="p1"><span class="s1">2. Click on Add to cart button</span></p>
+<p class="p1"><span class="s1">3. Click on Back to products</span></p>
+<p class="p1"><span class="s1">4. Click on another product title</span></p>
+<p class="p1"><span class="s1">5. Click on Add to cart button</span></p>
+<p class="p1"><span class="s1">6. Click on cart icon</span></p>
+<p class="p1"><span class="s1">7. Verify that 2 products successfully added to cart</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">Case 3.</span></p>
+<p class="p1"><span class="s1">1. Click on product title</span></p>
+<p class="p1"><span class="s1">2. Click on Add to cart button</span></p>
+<p class="p1"><span class="s1">3. Click on Back to products</span></p>
+<p class="p1"><span class="s1">4. Click on another product title</span></p>
+<p class="p1"><span class="s1">5. Click on Add to cart button</span></p>
+<p class="p1"><span class="s1">6. Click on Back to products</span></p>
+<p class="p1"><span class="s1">7. Remove on of added products</span></p>
+<p class="p3"><span class="s1">8. Click on cart icon</span></p>
+<p class="p3"><span class="s1">9. Verify that 1 product successfully added to cart</span></p>
+<p class="p4"><span class="s1"></span><br></p>
+<p class="p3"><span class="s1">Case 4.</span></p>
+<p class="p3"><span class="s1">1. Click on product title</span></p>
+<p class="p3"><span class="s1">2. Click on Add to cart button</span></p>
+<p class="p3"><span class="s1">3. Click on cart icon</span></p>
+<p class="p3"><span class="s1">4. Verify that 1 product successfully added to cart</span></p>
+<p class="p3"><span class="s1">5. Click on Continue Shopping button</span></p>
+<p class="p3"><span class="s1">6. Click on another product title</span></p>
+<p class="p3"><span class="s1">7. Click on Add to cart button</span></p>
+<p class="p3"><span class="s1">8. Click on cart icon</span></p>
+<p class="p3"><span class="s1">9. Verify that 2 products successfully added to cart</span></p>
+<p class="p4"><span class="s1"></span><br></p>
+<p class="p3"><span class="s1">Case 5.</span></p>
+<p class="p3"><span class="s1">1. Click on product Add to cart button</span></p>
+<p class="p3"><span class="s1">2. Verify that cart icon has changed and now has a red icon with the number 1.</span></p>
+<p class="p3"><span class="s1">3. Click on cart icon</span></p>
+<p class="p3"><span class="s1">4. Verify that 1 product successfully added to cart</span></p>
+<p class="p3"><span class="s1">5. Click on Checkout button</span></p>
+<p class="p3"><span class="s1">6. Fill all fields</span></p>
+<p class="p3"><span class="s1">7. Click on Continue button</span></p>
+<p class="p3"><span class="s1">8. Check item quantity</span></p>
+<p class="p3"><span class="s1">9. Check item title</span></p>
+<p class="p3"><span class="s1">10. Click on Finish button</span></p>
+<p class="p5"><span class="s2">11. Check «</span><span class="s1">Your order has been dispatched, and will arrive just as fast as the pony can get there!</span><span class="s2">» message</span></p>
+<p class="p4"><span class="s1"></span><br></p>
+<p class="p3"><span class="s1">Case 6.</span></p>
+<p class="p3"><span class="s1">1. Repeat case 5 staps</span></p>
+<p class="p3"><span class="s1">2. Click on Back Home button</span></p>
+<p class="p3"><span class="s1">3. Verify that cart icon has changed and NO longer has a red icon with the number 1 on it.</span></p>
+<p class="p4"><span class="s1"></span><br></p>
+<p class="p3"><span class="s1">Case 7.</span></p>
+<p class="p3"><span class="s1">1. Get 1 product description</span></p>
+<p class="p3"><span class="s1">2. Click on product title</span></p>
+<p class="p3"><span class="s1">3. Verify product description on item page</span></p>
+<p class="p3"><span class="s1">4. Click Add to cart button</span></p>
+<p class="p3"><span class="s1">5. Click on cart icon</span></p>
+<p class="p3"><span class="s1">6. Verify product description on cart page</span></p>
+<p class="p4"><span class="s1"></span><br></p>
+<p class="p3"><span class="s1">Case 8.<span class="Apple-converted-space"> </span></span></p>
+<p class="p3"><span class="s1">1. Logout</span></p>
+<p class="p1"><span class="s3">2. Again login with </span><span class="s1">performance_glitch_user</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">______________________________________________________________________________________________________</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">visual_user</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">Precondition</span></p>
+<p class="p1"><span class="s1">1. Login to https://www.saucedemo.com</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">Case 9.</span></p>
+<p class="p3"><span class="s1">1. Add some products to cart.</span></p>
+<p class="p3"><span class="s1">2. Verify that cart icon has changed and now has a red icon with the number equals to quantity of products</span></p>
+<p class="p3"><span class="s1">3. Open left menu</span></p>
+<p class="p3"><span class="s1">4. Click on Reset App State</span></p>
+<p class="p3"><span class="s1">5. Verify that cart icon has changed and NO longer has a red icon with the number on it.</span></p>
+<p class="p4"><span class="s1"></span><br></p>
+<p class="p3"><span class="s1">Case 10.</span></p>
+<p class="p3"><span class="s1">1. Check that social media icons have the correct links.</span></p>
+<p class="p4"><span class="s1"></span><br></p>
+<p class="p3"><span class="s1">Case 11.</span></p>
+<p class="p3"><span class="s1">1. Add some products to cart.</span></p>
+<p class="p3"><span class="s1">2. Verify that cart icon has changed and now has a red icon with the number equals to quantity of products</span></p>
+<p class="p3"><span class="s1">3. Open left menu</span></p>
+<p class="p3"><span class="s1">4. Click on Reset App State</span></p>
+<p class="p3"><span class="s1">5. Check that Remove buttons appear for products</span></p>
+<p class="p4"><span class="s1"></span><br></p>
+<p class="p3"><span class="s1">Case 12.</span></p>
+<p class="p1"><span class="s1">1. Click on product title</span></p>
+<p class="p1"><span class="s1">2. Click on Add to cart button</span></p>
+<p class="p1"><span class="s1">3. Open left menu</span></p>
+<p class="p1"><span class="s1">4. Click on All Items button</span></p>
+<p class="p1"><span class="s1">5. Verify that product have only Remove button instead of Add to cart button</span></p>
+<p class="p4"><span class="s1"></span><br></p>
+</body>
+</html>

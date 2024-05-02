@@ -1,0 +1,48 @@
+package business.pages;
+
+import business.BasePage;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class LeftMenuComponent extends BasePage {
+    @FindBy(id = "logout_sidebar_link")
+    private WebElement logoutButton;
+
+    @FindBy(id = "inventory_sidebar_link")
+    private WebElement allItemsButton;
+
+    @FindBy(id = "about_sidebar_link")
+    private WebElement aboutButton;
+
+    @FindBy(id = "reset_sidebar_link")
+    private WebElement resetButton;
+
+
+    public LeftMenuComponent(WebDriver driver) {
+        super(driver);
+    }
+
+    public LoginPage logOut(WebDriver driver) {
+        waitHelper.waitUntilVisibility(logoutButton, 20);
+        logoutButton.click();
+        return new LoginPage(driver);
+    }
+
+    public InventoryPage clickOnAllItems(WebDriver driver) {
+        waitHelper.waitUntilVisibility(allItemsButton, 20);
+        allItemsButton.click();
+        return new InventoryPage(driver);
+    }
+
+    public AboutPage goToAboutPage(WebDriver driver) {
+        waitHelper.waitUntilVisibility(aboutButton, 20);
+        aboutButton.click();
+        return new AboutPage(driver);
+    }
+
+    public void clickOnReset(){
+        waitHelper.waitUntilVisibility(resetButton);
+        resetButton.click();
+    }
+}
