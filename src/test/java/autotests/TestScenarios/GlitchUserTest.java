@@ -5,15 +5,15 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static business.Data.CommonData.*;
-import static business.Data.Messages.ORDER_COMPLETE_SUCCESS_MESSAGE_DESC;
-import static business.Data.UserData.getPassword;
-import static business.Data.UserData.getPerformanceGlitchUser;
+import static business.data.CommonData.*;
+import static business.data.Messages.ORDER_COMPLETE_SUCCESS_MESSAGE_DESC;
+import static business.data.UserData.getPassword;
+import static business.data.UserData.getPerformanceGlitchUser;
 
 
 public class GlitchUserTest extends BaseTest {
     @BeforeMethod
-    public void loginAsPerformanceGlitchUser(){
+    public void loginAsPerformanceGlitchUser() throws InterruptedException {
         loginPage
                 .fillInUsername(getPerformanceGlitchUser())
                 .fillInPassword(getPassword())
@@ -61,7 +61,7 @@ public class GlitchUserTest extends BaseTest {
                 .clickOnAddToCartButton()
                 .clickOnBackToProducts();
         inventoryPage
-                .clickOnRemoveButton(getDriver(), BACKPACK_ITEM_FULL_TITLE.substring(11))
+                .clickOnRemoveButton(BACKPACK_ITEM_FULL_TITLE.substring(11))
                 .goToCart();
         Assert.assertFalse(cartPage.verifyItemVisibility(BACKPACK_ITEM_FULL_TITLE, FLEECE_JACKET_ITEM_FULL_TITLE));
         cartPage.openMenu();
@@ -89,7 +89,7 @@ public class GlitchUserTest extends BaseTest {
     @Test
     // TC-5
     public void checkCartItemBadgeAndSuccessfulPaymentFlow(){
-        inventoryPage.clickOnAddToCartButton(getDriver(), BACKPACK_ITEM_FULL_TITLE.substring(11));
+        inventoryPage.clickOnAddToCartButton(BACKPACK_ITEM_FULL_TITLE.substring(11));
         Assert.assertEquals(inventoryPage.getCartBadgeItemCount(), 1);
         inventoryPage.goToCart();
         Assert.assertTrue(cartPage.verifyItemVisibility(BACKPACK_ITEM_FULL_TITLE));
@@ -108,7 +108,7 @@ public class GlitchUserTest extends BaseTest {
     @Test
     // TC-6
     public void checkCartItemCountIsNullifiedAfterThePurchase(){
-        inventoryPage.clickOnAddToCartButton(getDriver(), BACKPACK_ITEM_FULL_TITLE.substring(11));
+        inventoryPage.clickOnAddToCartButton(BACKPACK_ITEM_FULL_TITLE.substring(11));
         Assert.assertEquals(inventoryPage.getCartBadgeItemCount(), 1);
         inventoryPage.goToCart();
         Assert.assertTrue(cartPage.verifyItemVisibility(BACKPACK_ITEM_FULL_TITLE));
@@ -131,7 +131,7 @@ public class GlitchUserTest extends BaseTest {
     public void checkItemDescriptionAcrossAllPages(){
         String inventoryPageItemDesc = inventoryPage.getInventoryItemDescriptionByName(BACKPACK_ITEM_FULL_TITLE);
         inventoryPage
-                .clickOnAddToCartButton(getDriver(), BACKPACK_ITEM_FULL_TITLE.substring(11))
+                .clickOnAddToCartButton(BACKPACK_ITEM_FULL_TITLE.substring(11))
                 .goToCart();
         Assert.assertEquals(inventoryPageItemDesc, cartPage.getInventoryItemDescriptionByName(BACKPACK_ITEM_FULL_TITLE));
         cartPage.openMenu();
@@ -140,7 +140,7 @@ public class GlitchUserTest extends BaseTest {
 
     @Test
     // TC-8
-    public void checkLogOutLogInFunctionality(){
+    public void checkLogOutLogInFunctionality() throws InterruptedException {
         inventoryPage.openMenu();
         leftMenuComponent.logOut(getDriver());
         Assert.assertTrue(loginPage.isOnLoginPage());

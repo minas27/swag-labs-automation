@@ -8,7 +8,13 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
+import static core.ActionHelper.click;
+import static core.WaitHelper.waitUntilClickable;
+import static core.WaitHelper.waitUntilVisibility;
+
 public class CartPage extends BasePage {
+    private LeftMenuComponent leftMenuComponent;
+
     @FindBy(id = "checkout")
     private WebElement checkoutButton;
 
@@ -25,9 +31,12 @@ public class CartPage extends BasePage {
         super(driver);
     }
 
+    public LeftMenuComponent getLeftMenuComponent() {
+        return leftMenuComponent;
+    }
+
     public YourInformationPage goToCheckout(WebDriver driver){
-        waitHelper.waitUntilClickable(checkoutButton);
-        checkoutButton.click();
+        click(checkoutButton);
         return new YourInformationPage(driver);
     }
 
@@ -42,13 +51,13 @@ public class CartPage extends BasePage {
     }
 
     public InventoryPage clickOnContinueShopping(WebDriver driver){
-        waitHelper.waitUntilVisibility(continueShoppingButton);
+        waitUntilVisibility(continueShoppingButton);
         continueShoppingButton.click();
         return new InventoryPage(driver);
     }
 
     public boolean verifyItemVisibility(String... itemName){
-        waitHelper.waitUntilVisibility(cartItemNames.get(0), 20);
+        waitUntilVisibility(cartItemNames.get(0), 20);
         for (int i = 0; i < itemName.length; i++){
             if (!cartItemNames.get(i).getText().contains(itemName[i])) {
                 return false;

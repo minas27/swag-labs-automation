@@ -5,6 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static core.WaitHelper.waitUntilClickable;
+import static core.WaitHelper.waitUntilVisibility;
+
 public class YourInformationPage extends BasePage {
     @FindBy(id = "continue")
     private WebElement continueButton;
@@ -19,7 +22,7 @@ public class YourInformationPage extends BasePage {
     private WebElement postalCodeInput;
 
     public YourInformationPage setUserCredentials(String firstName, String lastName, String postalCode){
-        waitHelper.waitUntilVisibility(firstNameInput);
+        waitUntilVisibility(firstNameInput);
         firstNameInput.sendKeys(firstName);
         lastNameInput.sendKeys(lastName);
         postalCodeInput.sendKeys(postalCode);
@@ -30,7 +33,7 @@ public class YourInformationPage extends BasePage {
     }
 
     public YourInformationPage clickOnContinueButton(){
-        waitHelper.waitUntilClickable(continueButton);
+        waitUntilClickable(continueButton);
         continueButton.click();
         return this;
     }

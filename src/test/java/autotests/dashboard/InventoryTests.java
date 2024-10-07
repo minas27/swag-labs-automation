@@ -4,13 +4,13 @@ import autotests.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static business.Data.CommonData.FLEECE_JACKET_ITEM_FULL_TITLE;
-import static business.Data.UserData.getPassword;
-import static business.Data.UserData.getStandardUser;
+import static business.data.CommonData.FLEECE_JACKET_ITEM_FULL_TITLE;
+import static business.data.UserData.getPassword;
+import static business.data.UserData.getStandardUser;
 
 public class InventoryTests extends BaseTest {
     @Test
-    public void checkTheItemAddToCartBecomeRemove(){
+    public void checkTheItemAddToCartBecomeRemove() throws InterruptedException {
         loginPage
                 .fillInUsername(getStandardUser())
                 .fillInPassword(getPassword())

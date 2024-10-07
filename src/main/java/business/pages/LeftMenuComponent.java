@@ -5,6 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static core.ActionHelper.click;
+import static core.WaitHelper.waitUntilVisibility;
+
 public class LeftMenuComponent extends BasePage {
     @FindBy(id = "logout_sidebar_link")
     private WebElement logoutButton;
@@ -24,25 +27,24 @@ public class LeftMenuComponent extends BasePage {
     }
 
     public LoginPage logOut(WebDriver driver) {
-        waitHelper.waitUntilVisibility(logoutButton, 20);
+        waitUntilVisibility(logoutButton, 20);
         logoutButton.click();
         return new LoginPage(driver);
     }
 
     public InventoryPage clickOnAllItems(WebDriver driver) {
-        waitHelper.waitUntilVisibility(allItemsButton, 20);
+        waitUntilVisibility(allItemsButton, 20);
         allItemsButton.click();
         return new InventoryPage(driver);
     }
 
     public AboutPage goToAboutPage(WebDriver driver) {
-        waitHelper.waitUntilVisibility(aboutButton, 20);
+        waitUntilVisibility(aboutButton, 20);
         aboutButton.click();
         return new AboutPage(driver);
     }
 
     public void clickOnReset(){
-        waitHelper.waitUntilVisibility(resetButton);
-        resetButton.click();
+        click(resetButton);
     }
 }

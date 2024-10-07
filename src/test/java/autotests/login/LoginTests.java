@@ -1,17 +1,17 @@
 package autotests.login;
 
 import autotests.BaseTest;
-import business.Data.Messages;
+import business.data.Messages;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static business.Data.UserData.*;
+import static business.data.UserData.*;
 
 public class LoginTests extends BaseTest {
 
     @Test
-    public void checkLoginForStandardUser(){
+    public void checkLoginForStandardUser() throws InterruptedException {
         loginPage
                 .fillInUsername(getStandardUser())
                 .fillInPassword(getPassword())
@@ -19,13 +19,13 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public void checkLoginForLockedUser(){
+    public void checkLoginForLockedUser() throws InterruptedException {
         loginPage
                 .fillInUsername(getLockedUser())
                 .fillInPassword(getPassword())
                 .clickOnLogin();
         Assert.assertEquals(
-                loginPage.getErrorMessage(),
+                loginPage.getCommonElements().getErrorMessage(),
                 Messages.LOCKED_USER_ERROR_MESSAGE);
     }
 
@@ -34,7 +34,7 @@ public class LoginTests extends BaseTest {
         loginPage
                 .clickOnLogin();
         Assert.assertEquals(
-                loginPage.getErrorMessage(),
+                loginPage.getCommonElements().getErrorMessage(),
                 Messages.USERNAME_REQUIRED_ERROR_MESSAGE);
     }
 
@@ -42,12 +42,12 @@ public class LoginTests extends BaseTest {
     public void checkCloseErrorMessageButton(){
         loginPage.clickOnLogin();
 
-        loginPage.closeErrorMessage();
+        loginPage.getCommonElements().closeErrorMessage();
 
-        Assert.assertFalse(loginPage.isErrorMessageDisplayed());
+        Assert.assertFalse(loginPage.getCommonElements().isErrorMessageDisplayed());
     }
     @Test
-    public void checkLogoutForStandardUser(){
+    public void checkLogoutForStandardUser() throws InterruptedException {
         loginPage
                 .fillInUsername(getStandardUser())
                 .fillInPassword(getPassword())

@@ -10,6 +10,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 
+import static core.WaitHelper.waitUntilVisibility;
+
 public class CheckoutOverviewPage extends BasePage {
     @FindBy(css = ".inventory_item_price")
     private List<WebElement> itemsPrices;
@@ -72,12 +74,12 @@ public class CheckoutOverviewPage extends BasePage {
     }
 
     public String getSuccessMessage(){
-        waitHelper.waitUntilVisibility(thankYouMessage);
+        waitUntilVisibility(thankYouMessage);
         return thankYouMessage.getText();
     }
 
     public String getSuccessCompleteMessage(){
-        waitHelper.waitUntilVisibility(thankYouCompleteMessage);
+        waitUntilVisibility(thankYouCompleteMessage);
         return thankYouCompleteMessage.getText();
     }
 
@@ -90,7 +92,7 @@ public class CheckoutOverviewPage extends BasePage {
     }
 
     public InventoryPage clickOnBackToProducts(WebDriver driver){
-        waitHelper.waitUntilVisibility(backToProductsButton);
+        waitUntilVisibility(backToProductsButton);
         backToProductsButton.click();
         return new InventoryPage(driver);
     }
@@ -117,7 +119,7 @@ public class CheckoutOverviewPage extends BasePage {
     }
 
     private double calculateItemPricesTotal(){
-        waitHelper.waitUntilVisibility(itemsPrices.get(0));
+        waitUntilVisibility(itemsPrices.get(0));
         double total = 0;
 
         for (WebElement itemPrice: itemsPrices){

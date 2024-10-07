@@ -1,13 +1,22 @@
 package business.pages;
 
 import business.BasePage;
+import business.data.CommonElements;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
+import static core.ActionHelper.click;
 import static core.ActionHelper.isDisplayed;
+import static core.WaitHelper.pause;
+import static core.WaitHelper.waitUntilVisibility;
 
-public class LoginPage extends BasePage {
+public class LoginPage {
+    private WebDriver driver;
+
+    CommonElements commonElements;
+
     @FindBy(id = "user-name")
     private WebElement userNameInput;
 
@@ -17,14 +26,18 @@ public class LoginPage extends BasePage {
     @FindBy(id = "login-button")
     private WebElement loginButton;
 
-    @FindBy(css = "[data-test=\"error-button\"]")
-    private WebElement closeErrorMessageBtn;
-
     public LoginPage(WebDriver driver) {
-        super(driver);
+        this.driver = driver;
+        this.commonElements = new CommonElements(driver);
+        PageFactory.initElements(driver, this);
     }
 
-    public LoginPage fillInUsername(String userName){
+    public CommonElements getCommonElements() {
+        return commonElements;
+    }
+
+    public LoginPage fillInUsername(String userName) throws InterruptedException {
+        waitUntilVisibility(userNameInput);
         userNameInput.sendKeys(userName);
         return this;
     }
@@ -35,14 +48,11 @@ public class LoginPage extends BasePage {
     }
 
     public void clickOnLogin(){
-        loginButton.click();
+        click(loginButton);
     }
 
-    public void closeErrorMessage(){
-        closeErrorMessageBtn.click();
-    }
-
-    public boolean isOnLoginPage() {
-        return isOnPage(userNameInput);
+    public boolean isOnLoginPage(){
+        waitUntilVisibility(userNameInput);
+        return userNameInput.isDisplayed();
     }
 }

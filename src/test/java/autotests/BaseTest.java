@@ -1,14 +1,20 @@
 package autotests;
 
+import business.factory.DriverManager;
 import business.pages.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
-import static business.Data.CommonData.BASE_URL;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
+
+import static business.data.CommonData.BASE_URL;
+import static business.data.CommonData.BASE_URL;
 
 public class BaseTest {
-    private static ChromeDriver chromeDriver;
+    private WebDriver driver;
 
     protected LoginPage loginPage;
 
@@ -26,32 +32,34 @@ public class BaseTest {
 
     protected AboutPage aboutPage;
 
-    public BaseTest(){
-        WebDriverManager.chromedriver().setup();
-        chromeDriver = new ChromeDriver();
-        loginPage = new LoginPage(chromeDriver);
-        inventoryPage = new InventoryPage(chromeDriver);
-        itemPage = new ItemPage(chromeDriver);
-        cartPage = new CartPage(chromeDriver);
-        yourInformationPage = new YourInformationPage(chromeDriver);
-        leftMenuComponent = new LeftMenuComponent(chromeDriver);
-        aboutPage = new AboutPage(chromeDriver);
-        checkoutOverviewPage = new CheckoutOverviewPage(chromeDriver);
+    public WebDriver getDriver(){
+        return driver;
     }
 
-    public static ChromeDriver getDriver(){
-        return chromeDriver;
+    public void setDriver(WebDriver driver) {
+        this.driver = driver;
     }
 
+    @Parameters("browser")
     @BeforeMethod
-    public void open(){
-        chromeDriver.manage().window().maximize();
-        chromeDriver.get(BASE_URL);
-        loginPage.isOnLoginPage();
+    public void startDriver(@Optional String browser){
+        browser = System.getProperty("browser", browser);
+        setDriver(new DriverManager().initializeDriver(browser));
+        getDriver().get(BASE_URL);
+        loginPage = new LoginPage(getDriver());
+        inventoryPage = new InventoryPage(getDriver());
+        itemPage = new ItemPage(getDriver());
+        cartPage = new CartPage(getDriver());
+        yourInformationPage = new YourInformationPage(getDriver());
+        leftMenuComponent = new LeftMenuComponent(getDriver());
+        aboutPage = new AboutPage(getDriver());
+        checkoutOverviewPage = new CheckoutOverviewPage(getDriver());
+        System.out.println("CURRENT THREAD: " + Thread.currentThread().threadId() + ", " + "DRIVER = " + getDriver());
     }
 
     @AfterSuite(alwaysRun = true)
     public void close(){
-        chromeDriver.close();
+        getDriver().quit();
+        System.out.println("CURRENT THREAD: " + Thread.currentThread().threadId() + ", " + "DRIVER = " + getDriver());
     }
 }

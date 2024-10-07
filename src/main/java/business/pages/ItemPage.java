@@ -5,6 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static core.ActionHelper.click;
+import static core.WaitHelper.waitUntilVisibility;
+
 public class ItemPage extends BasePage {
     @FindBy(id = "add-to-cart")
     private WebElement addToCartBtn;
@@ -23,19 +26,19 @@ public class ItemPage extends BasePage {
     }
 
     public ItemPage clickOnAddToCartButton(){
-        waitHelper.waitUntilVisibility(addToCartBtn, 50);
+        waitUntilVisibility(addToCartBtn, 50);
         addToCartBtn.click();
         return this;
     }
 
     public ItemPage removeFromCart(){
-        waitHelper.waitUntilVisibility(removeButton, 25);
+        waitUntilVisibility(removeButton, 25);
         removeButton.click();
         return this;
     }
 
     public ItemPage clickOnBackToProducts(){
-        backToProductsBtn.click();
+        click(backToProductsBtn);
         return this;
     }
 

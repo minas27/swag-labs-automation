@@ -1,5 +1,8 @@
 package business;
 
+import business.data.CommonElements;
+import business.pages.CartPage;
+import core.ActionHelper;
 import core.WaitHelper;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -7,19 +10,23 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import static core.ActionHelper.click;
 import static core.ActionHelper.isDisplayed;
+import static core.WaitHelper.waitUntilVisibility;
 
 public class BasePage {
-    public WaitHelper waitHelper;
+    protected WebDriver driver;
+
+    CommonElements commonElements;
 
     @FindBy(css = ".shopping_cart_link")
     private WebElement cartButton;
 
-    @FindBy(css = "[data-test=\"error\"]")
-    private WebElement errorMessage;
-
     @FindBy(id = "react-burger-menu-btn")
     private WebElement hamburgerMenuBtn;
+
+    @FindBy(id="react-burger-cross-btn")
+    private WebElement closeBtn;
 
     @FindBy(css = ".shopping_cart_badge")
     private WebElement cartItemCount;
@@ -34,28 +41,34 @@ public class BasePage {
     private WebElement linkedinSocialButton;
 
     public BasePage(WebDriver driver){
+        this.driver = driver;
         PageFactory.initElements(driver, this);
-        waitHelper = new WaitHelper(driver);
+        ActionHelper.setDriver(driver);
+        WaitHelper.setDriver(driver);
+        commonElements = new CommonElements(driver);
     }
 
-    public String getErrorMessage(){
-        return errorMessage.getText();
+    public CommonElements getCommonElements() {
+        return commonElements;
     }
 
-    public BasePage goToCart(){
-        waitHelper.waitUntilVisibility(cartButton);
-        cartButton.click();
-        return this;
+    public CartPage goToCart(){
+        click(cartButton);
+        return new CartPage(driver);
     }
 
     public BasePage openMenu(){
-        waitHelper.waitUntilVisibility(hamburgerMenuBtn);
-        hamburgerMenuBtn.click();
+        click(hamburgerMenuBtn);
+        return this;
+    }
+
+    public BasePage closeMenu(){
+        click(closeBtn);
         return this;
     }
 
     public int getCartBadgeItemCount(){
-        waitHelper.waitUntilVisibility(cartItemCount,15);
+        waitUntilVisibility(cartItemCount,15);
         return Integer.parseInt(cartItemCount.getText());
     }
 
@@ -75,12 +88,8 @@ public class BasePage {
         return linkedinSocialButton.getAttribute("href");
     }
 
-    public boolean isErrorMessageDisplayed(){
-        return isDisplayed(errorMessage);
-    }
-
     public boolean isOnPage(WebElement element){
-        waitHelper.waitUntilVisibility(element, 15);
+        waitUntilVisibility(element, 15);
         return element.isDisplayed();
     }
 

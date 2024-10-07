@@ -5,23 +5,23 @@ import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static business.Data.CommonData.*;
-import static business.Data.Messages.ORDER_COMPLETE_SUCCESS_MESSAGE;
-import static business.Data.UserData.getPassword;
-import static business.Data.UserData.getStandardUser;
+import static business.data.CommonData.*;
+import static business.data.Messages.ORDER_COMPLETE_SUCCESS_MESSAGE;
+import static business.data.UserData.getPassword;
+import static business.data.UserData.getStandardUser;
 
 public class E2E extends BaseTest {
     @Test
     @Description("check the app")
-    public void checkApp(){
+    public void checkApp() throws InterruptedException {
         loginPage
                 .fillInUsername(getStandardUser())
                 .fillInPassword(getPassword())
                 .clickOnLogin();
         inventoryPage
-                .clickOnAddToCartButton(getDriver(), BIKE_LIGHT_ITEM_FULL_TITLE.substring(11))
-                .clickOnAddToCartButton(getDriver(), BACKPACK_ITEM_FULL_TITLE.substring(11))
-                .clickOnAddToCartButton(getDriver(), FLEECE_JACKET_ITEM_FULL_TITLE.substring(11));
+                .clickOnAddToCartButton(BIKE_LIGHT_ITEM_FULL_TITLE.substring(11))
+                .clickOnAddToCartButton(BACKPACK_ITEM_FULL_TITLE.substring(11))
+                .clickOnAddToCartButton(FLEECE_JACKET_ITEM_FULL_TITLE.substring(11));
         inventoryPage.goToCart();
         cartPage.verifyItemVisibility(
                 BIKE_LIGHT_ITEM_FULL_TITLE.substring(11),

@@ -14,6 +14,7 @@ import java.util.List;
 
 import static core.ActionHelper.isDisplayed;
 import static core.ActionHelper.selectByValue;
+import static core.WaitHelper.waitUntilVisibility;
 
 public class InventoryPage extends BasePage {
 
@@ -36,28 +37,28 @@ public class InventoryPage extends BasePage {
         super(driver);
     }
 
-    public WebElement getAddToCartButton(WebDriver driver, String name){
+    public WebElement getAddToCartButton(String name){
         return driver.findElement(By.id("add-to-cart-sauce-labs-" + name));
     }
 
-    public WebElement getRemoveButton(WebDriver driver, String name){
+    public WebElement getRemoveButton(String name){
         return driver.findElement(By.id("remove-sauce-labs-" + name));
     }
 
-    public InventoryPage clickOnAddToCartButton(WebDriver driver, String name){
-        waitHelper.waitUntilVisibility(inventoryItems.get(0));
-        getAddToCartButton(driver, name.toLowerCase().replace(' ', '-')).click();
+    public InventoryPage clickOnAddToCartButton(String name){
+        waitUntilVisibility(inventoryItems.get(0));
+        getAddToCartButton(name.toLowerCase().replace(' ', '-')).click();
         return this;
     }
 
-    public InventoryPage clickOnRemoveButton(WebDriver driver, String name){
-        waitHelper.waitUntilVisibility(inventoryItems.get(0));
-        getRemoveButton(driver, name.toLowerCase().replace(' ', '-')).click();
+    public InventoryPage clickOnRemoveButton(String name){
+        waitUntilVisibility(inventoryItems.getFirst());
+        getRemoveButton(name.toLowerCase().replace(' ', '-')).click();
         return this;
     }
 
     public InventoryPage clickOnItemByName(String itemName){
-        waitHelper.waitUntilVisibility(inventoryItems.get(0), 30);
+        waitUntilVisibility(inventoryItems.getFirst(), 30);
         for(WebElement item: inventoryItems){
             if(item.getText().contains(itemName)){
                 item.click();
@@ -87,7 +88,7 @@ public class InventoryPage extends BasePage {
     }
 
     public boolean isRemoveButtonDisplayed(){
-        waitHelper.waitUntilVisibility(inventoryItemsWithRemoveButton.get(0));
+        waitUntilVisibility(inventoryItemsWithRemoveButton.get(0));
         return isDisplayed(inventoryItemsWithRemoveButton.get(0));
     }
 
@@ -105,7 +106,7 @@ public class InventoryPage extends BasePage {
 
     public boolean verifyAddToCartButtonVisibility(WebDriver driver, String itemName) {
         try {
-            if (getAddToCartButton(driver, itemName.substring(11)) != null) {
+            if (getAddToCartButton(itemName.substring(11)) != null) {
                 return true;
             }
         } catch (NoSuchElementException e) {

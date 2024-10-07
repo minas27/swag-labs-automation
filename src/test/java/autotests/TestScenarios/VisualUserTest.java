@@ -5,12 +5,12 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static business.Data.CommonData.*;
-import static business.Data.UserData.*;
+import static business.data.CommonData.*;
+import static business.data.UserData.*;
 
 public class VisualUserTest extends BaseTest {
     @BeforeMethod
-    public void loginAsVisualUser(){
+    public void loginAsVisualUser() throws InterruptedException {
         loginPage
                 .fillInUsername(getVisualUser())
                 .fillInPassword(getPassword())
@@ -22,8 +22,8 @@ public class VisualUserTest extends BaseTest {
     // TC-9
     public void checkCartItemCountNumberAndResetOption(){
         inventoryPage
-                .clickOnAddToCartButton(getDriver(), BACKPACK_ITEM_FULL_TITLE.substring(11))
-                .clickOnAddToCartButton(getDriver(), FLEECE_JACKET_ITEM_FULL_TITLE.substring(11));
+                .clickOnAddToCartButton(BACKPACK_ITEM_FULL_TITLE.substring(11))
+                .clickOnAddToCartButton(FLEECE_JACKET_ITEM_FULL_TITLE.substring(11));
         Assert.assertEquals(inventoryPage.getCartBadgeItemCount(), 2);
         inventoryPage.openMenu();
         leftMenuComponent.clickOnReset();
@@ -42,8 +42,8 @@ public class VisualUserTest extends BaseTest {
     // TC-11
     public void checkAddToCartResetFunctionality(){
         inventoryPage
-                .clickOnAddToCartButton(getDriver(), BACKPACK_ITEM_FULL_TITLE.substring(11))
-                .clickOnAddToCartButton(getDriver(), FLEECE_JACKET_ITEM_FULL_TITLE.substring(11));
+                .clickOnAddToCartButton(BACKPACK_ITEM_FULL_TITLE.substring(11))
+                .clickOnAddToCartButton(FLEECE_JACKET_ITEM_FULL_TITLE.substring(11));
         Assert.assertEquals(inventoryPage.getCartBadgeItemCount(), 2);
         inventoryPage.openMenu();
         leftMenuComponent.clickOnReset();
